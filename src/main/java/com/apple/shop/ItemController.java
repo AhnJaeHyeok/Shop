@@ -19,6 +19,6 @@ public class ItemController {
     // HTML에 서버데이터 넣으려면 -> 파라미터에 Model model -> model.addAttribute(작명,데이터) -> HTML파일에선 th:text="${작명}"
     String list(Model model){
         model.addAttribute("name","홍길동");
-        return"list.html";
+        return"list";
     }
 }
