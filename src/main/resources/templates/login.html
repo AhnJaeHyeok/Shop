@@ -1,4 +1,4 @@
-<!--글작성 페이지 -->
+<!--로그인 페이지 -->
 
 <!doctype html>
 <html lang="en">
@@ -14,11 +14,15 @@
 
 <div th:replace="~{ nav.html::navbar }"></div>
 
-<h4>등록🚀</h4>
+<h4>로그인🚀</h4>
 
-<form action="/add" method="post">
-    <input name="title">
-    <input name="price">
+<div th:if="${param.error}">
+    <h4>아이디나 비번 틀리셨어요</h4>
+</div>
+
+<form action="/login" method="POST">
+    <input name="username">
+    <input name="password" type="password">
     <button type="submit">전송</button>
 </form>
 

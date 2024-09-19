@@ -23,8 +23,6 @@ public class ItemService {
         if (price < 0){ // 가격 음수 체크
             throw new IllegalArgumentException("음수가 왠말?");
         }
-
-
             Item item = new Item();
             item.setId(id);
             item.setTitle(title);
