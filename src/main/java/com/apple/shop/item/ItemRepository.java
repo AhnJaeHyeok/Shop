@@ -1,4 +1,4 @@
-package com.apple.shop;
+package com.apple.shop.item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 // Item 테이블의 데이터 꺼내기

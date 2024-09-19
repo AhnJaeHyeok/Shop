@@ -1,3 +1,5 @@
+<!--리스트 페이지-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,13 +14,42 @@
 
 <div th:replace="~{ nav.html::navbar }"></div>
 
-<div class="card" th:each="i: ${items}"> <!--데이터들을 하나하나 꺼내줌 i 에다가 -->
+<div class="card" th:each="i : ${items}"> <!--데이터들을 하나하나 꺼내줌 i 에다가 -->
     <img src="https://placehold.co/300">
     <div>
-        <h4 th:text="${i.title}">바지</h4>
-        <a th:href="@{ '/detail/' + ${i.id} }">링크</a>  <!--상세페이지 이동하는 링크 만들기-->
-        <p th:text="${i.price}">7억</p>
-    </div>
+<!--1. 수정버튼 누르면 글수정페이지로 -->
+        <a th:href="@{ '/detail/' + ${i.id} }"><!--상세페이지 이동하는 링크 만들기-->
+            <h4 th:text="${i.title}">바지</h4>
+        </a>
+        <p th:text="${i.price + '원'}">7억</p>
+        <a th:href="@{/edit/{id}(id=${i.id})}">✏️</a>
+        <span th:onclick="fetch('/item?id=[[${i.id}]]', {method : 'DELETE'})
+
+            .then(r => r.text())
+            .then(() => {
+                location.reload();
+            })
+">🗑️</span>
+        <!--.then() 붙이면 AJAX 요청 완료시 코드실행가능,  location.reload(); 브라우저 새로고침 해줌,
+                                                                                             .then((a) => {
+                                                                    서버가 보낸 데이터 줄력 해줌  console.log(a); -->
+
+    </div>               <!--/item 으로 DELETE 요청을 날리면 삭제-->
 </div>
+<!--    <a th:href= "@{'/edit/' + ${i.id}}">✏️</a>   -->
+
+<!-- 버튼누를때 자바스크립트 실행하고싶다-->
+<button class="btn">버튼</button>
+<script>
+    //html 페이지의. class="btn"을 [0](그중에 맨위) 찾아서 그거 클릭시 (이벤트) fetch('test1') 실행해주세요
+    document.querySelectorAll('.btn')[0].addEventListener('click',function() {
+        fetch('/test1?name=kim&age=20')
+    })
+</script>
+
+<!--<script> //html 파일 로드시 1회 실행-->
+<!--    fetch('/test1') // 이 url로 get요청 날려줌-->
+<!--</script>-->
+
 </body>
 </html>

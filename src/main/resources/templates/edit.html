@@ -1,5 +1,3 @@
-<!--상품목록 페이지-->
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,12 +12,12 @@
 
 <div th:replace="~{ nav.html::navbar }"></div>
 
-<div class="detail">
-    <h4>상세페이지</h4>
-    <img src="https://placehold.co/300">
-    <h4 th:text="${ data.title }">금도금 바지</h4>
-    <p th:text="${ data.price + '원' }">7억</p>
-</div>
+<form action="/edit" method="POST"><!-- 서버로 데이터 전송 = edit 으로 POST 요청이 간다. 왜 하냐 서버로 보내서 이상이 없으면 DB를 수정하기 위해서 -->
+    <input name="id" th:value="${data.id}" style="display:none">
+    <input name="title" th:value="${data.title}">
+    <input name="price" th:value="${data.price}">
+    <button type="submit">전송</button>
+</form>
 
 </body>
 </html>
